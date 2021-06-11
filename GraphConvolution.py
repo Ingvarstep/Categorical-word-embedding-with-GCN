@@ -2,7 +2,6 @@ import torch
 from torch.nn.parameter import Parameter
 from torch.nn.modules.module import Module
 import torch.nn.functional as F
-import math
 torch.manual_seed(0)
 torch.cuda.manual_seed(0)
 
@@ -20,7 +19,7 @@ class GraphConvolutionLayer(Module):
         self.reset_parameters()
 
     def reset_parameters(self):
-        stdv = 1. / math.sqrt(self.weight.size(1))
+        stdv = 1. / torch.sqrt(self.weight.size(1))
         self.weight.data.uniform_(-stdv, stdv)
         if self.bias is not None:
             self.bias.data.uniform_(-stdv, stdv)
