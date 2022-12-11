@@ -7,21 +7,21 @@ For running the model, you should have text corpus saved in a TXT file and param
 
 ### Example
 ```python
-    with open(corpus_path, 'r') as f:
-        corpus = f.readlines()
+ with open(corpus_path, 'r') as f:
+    corpus = f.readlines()
 
-    with open(file) as f:
-        config = json.load(f)
+ with open(file) as f:
+    config = json.load(f)
         
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-w2v_gcn = W2VGCN(input_list_name = corpus[:100], emb_dimension=config['emb_dimension'], sent_max_len=config['sent_max_len'],
+ w2v_gcn = W2VGCN(input_list_name = corpus[:100], emb_dimension=config['emb_dimension'], sent_max_len=config['sent_max_len'],
                         iteration=config['iterations'], initial_lr = config['initial_lr'],
                             dropout = config['dropout'], min_count = config['min_count'], batch_size = config['batch_size'])
-    w2v_gcn.train()
+ w2v_gcn.train()
 
-    with open(model_name, 'wb') as f:
-        torch.save(w2v_gcn, f)
+ with open(model_name, 'wb') as f:
+    torch.save(w2v_gcn, f)
 ```
 
 where
